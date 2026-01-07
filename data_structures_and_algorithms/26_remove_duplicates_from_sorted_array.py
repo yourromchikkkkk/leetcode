@@ -2,18 +2,17 @@ from typing import List
 
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        j, i = 1, 1
+        slowP, fastP = 1, 1
 
-        while i <= len(nums) - 1 and j <= len(nums) - 1:
-            if nums[i - 1] != nums[j]:
-                nums[i] = nums[j]
-                i += 1
-            j += 1
+        while fastP < len(nums): 
+            if nums[fastP] != nums[slowP - 1]:
+                nums[slowP] = nums[fastP]
+                slowP += 1
+            fastP += 1
+        return slowP
 
-        
-        return i
-    
 
 solution = Solution()
-testCase = [0,0,1,1,1,2,2,3,3,4]
+testCase = [0, 0, 1, 1, 1, 2, 2, 3, 4]
 print(solution.removeDuplicates(testCase))
+print(testCase)
